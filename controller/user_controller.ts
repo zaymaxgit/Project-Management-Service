@@ -85,6 +85,12 @@ export const user_change = async (req, res) => {
       );
       res.json(user_change);
     }
+    if (body.password) {
+      let user_change: any = await pool.query(
+        `UPDATE users SET password = '${body.password}' WHERE login = '${body.login}';`
+      );
+      res.json(user_change);
+    }
   } catch (error) {
     console.log(error);
   }
